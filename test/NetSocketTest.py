@@ -1,8 +1,10 @@
 import socket
 s = socket.socket()         
-s.bind(('0.0.0.0', 6969))
-s.listen(0)                 
+s.bind(('0.0.0.0', 7100))
+s.listen()                 
+
 while True:
+
     client, addr = s.accept()
     while True:
         content = client.recv(32)
@@ -10,6 +12,6 @@ while True:
            break
         else:
             print(content)
-    print("Closing connection")
+ 
+    print(f"Closing connection {addr}")
     client.close()
-
