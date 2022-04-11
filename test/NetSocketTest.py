@@ -12,7 +12,9 @@ while True:
         if len(content) ==0:
            break
         else:
+            print("Received ")
             print(content)
-            #client.sendall(b"Thanks!")            
-    print(f"Closing connection {addr}")
+            if(addr[0] == "192.168.0.69"):
+                client.sendall(b"Thank you number 3")            
+    print(f"Closing connection {addr[0]}")
     client.close()

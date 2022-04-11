@@ -4,8 +4,9 @@
 const char* ssid = "SKYPEMHG";
 const char* password =  "8NHetSWQAJ75";
 const uint16_t port = 7100;
-const char * host = "192.168.0.2";  //host PC
- 
+//const char * host = "192.168.0.2";  //host PC
+const char * host = "192.168.0.56";
+
 void setup()
 {
   Serial.begin(115200);
@@ -28,6 +29,9 @@ void loop()
     }
     Serial.println("Connected to server successful!");
     client.print("Hello from ESP32 Number 3");
+    String test = client.readString();
+    Serial.print("Received ");
+    Serial.println(test);
     Serial.println("Disconnecting...");
     client.stop();
     delay(10000);
