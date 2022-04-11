@@ -1,3 +1,4 @@
+from multiprocessing.connection import Client
 import socket
 s = socket.socket()         
 s.bind(('0.0.0.0', 7100))
@@ -12,6 +13,6 @@ while True:
            break
         else:
             print(content)
- 
+            #client.sendall(b"Thanks!")            
     print(f"Closing connection {addr}")
     client.close()
