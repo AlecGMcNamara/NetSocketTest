@@ -1,11 +1,26 @@
 #include <Arduino.h>
 #include <WiFi.h>
- 
+#include <ArduinoJSON.h>
+
 const char* ssid = "SKYPEMHG";
 const char* password =  "8NHetSWQAJ75";
 const uint16_t port = 7100;
 //const char * host = "192.168.0.2";  //host PC
 const char * host = "192.168.0.56";
+
+String sendMessage()
+{
+    StaticJsonDocument<200> jsonSend;
+
+    jsonSend["input1"] = digitalRead(4);
+    jsonSend["input2"] = digitalRead(0);
+    jsonSend["input3"] = digitalRead(2);
+    jsonSend["input4"] = digitalRead(15);
+
+    String strMessage = "";
+    serializeJson(jsonSend,strMessage);
+    return strMessage;
+}
 
 void setup()
 {
@@ -28,10 +43,10 @@ void loop()
         return;
     }
     Serial.println("Connected to server successful!");
-    client.print("Hello from ESP32 Number 3");
-    String test = client.readString();
-    Serial.print("Received ");
-    Serial.println(test);
+    client.print (sendMessage());    
+    //
+    //Serial.print("Received ");
+    //Serial.println(test);
     Serial.println("Disconnecting...");
     client.stop();
     delay(10000);
