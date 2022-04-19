@@ -7,7 +7,7 @@ s.bind(('0.0.0.0', 7100))
 s.listen()                 
 
 while True:
-    client, addr = s.accept()
+    client, addr = s.accept() # Wait for connection (blocking)
     fullMessage = b''
     while True:
         content = client.recv(32)
